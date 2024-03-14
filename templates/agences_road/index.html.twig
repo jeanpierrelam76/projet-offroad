@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OffRoad{% endblock %}
+
+{% block body %}
+<img src= "{{ asset("image/arton33909.png" ) }}" alt="Drum Set" width ="100%" height= "500px"> 
+    <h1 class="text-center py-3">Agences événementielles</h1>
+    <h4 class="text-center py-3">Listing non exhaustive</h4>
+<div class="table-responsive mx-auto p-4">
+    <table class="table table-striped table-bordered  ">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Contact</th>
+                <th>EPI</th>
+                <th>Regime</th>
+                <th>Renumeration</th>
+                <th>Lien</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for agences_road in agences_roads %}
+            <tr>
+                <td>{{ agences_road.id }}</td>
+                <td>{{ agences_road.Nom }}</td>
+                <td>{{ agences_road.Adresse }}</td>
+                <td>{{ agences_road.Contact }}</td>
+                <td>{{ agences_road.EPI }}</td>
+                <td>{{ agences_road.Regime }}</td>
+                <td>{{ agences_road.Renumeration }}</td>
+                <td>{{ agences_road.Lien }}</td>
+                <td>
+                    <a href="{{ path('app_agences_road_show', {'id': agences_road.id}) }}">show</a>
+                    <a href="{{ path('app_agences_road_edit', {'id': agences_road.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <a href="{{ path('app_agences_road_new') }}">Create new</a>
+{% endblock %}
